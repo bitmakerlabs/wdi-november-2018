@@ -8,9 +8,16 @@
     <!-- <link rel="stylesheet" href="http://meyerweb.com/eric/tools/css/reset/reset.css"> -->
 
     <!-- Un-comment the following line to see wht the document looks like with Normalize applied -->
-    <!-- <link rel="stylesheet" href="https://necolas.github.io/normalize.css/7.0.0/normalize.css"> -->
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/7.0.0/normalize.css">
 
-    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!--  Don't do. But acceptable if you haveee tooo. -->
+    <!-- <style>
+      body {
+        background-color: yellow;
+      }
+    </style> -->
 
     <meta name="og:title" content="HTML Fundamentals (for Facebook)">
     <meta name="og:image" content="http://localhost.com/image.png">
@@ -19,7 +26,7 @@
   <body class="container">
     <header>
       <h1>HTML Fundamentals</h1>
-      <h2>An Introduction</h2>
+      <h2 class="intro">An Introduction</h2>
     </header>
 
     <nav>
@@ -29,7 +36,7 @@
         </li>
         <li><a href="#">Menu 002</a></li>
         <li><a href="#">Menu 003</a></li>
-        <li><a href="#">Menu 004</a></li>
+        <li><a href="#" class="highlight">Menu 004</a></li>
         <li><a href="#">Menu 005</a></li>
       </ul>
     </nav>
@@ -37,11 +44,13 @@
     <main>
       <header>
         <h1 class="hero">Main Section</h1>
+        <h1>Boop</h1>
+        <h1>Poop</h1>
         <h2>Or where your main content lives</h2>
         <h3><img src="images/logo.png" alt="Bitmaker"></h3>
       </header>
 
-      <section id="hero-unit">
+      <section class="highlight boop" id="hero-unit">
         <div class="hero">
           Let's learn about the purpose of different HTML elements through the markup of this page.
         </div>
@@ -49,13 +58,15 @@
 
       <section id="article-list">
         <article class="post" id="main-article">
-          <h1>Post 001</h1>
+          <div>
+            <h1 class="highlight special">Post 001</h1>
+          </div>
           <p>
             Lorem ipsum dolor sit amet, <span class="inline-text">consectetur adipisicing elit</span>. Laudantium neque delectus <strong>commodi quisquam natus</strong>, veniam. Dolorem vel consectetur, et quas nihil inventore sed quia, sit quisquam quibusdam molestias corrupti ipsum.</p>
           <h2>Subheader</h2>
           <p>
             Lorem ipsum dolor sit amet, <span class="inline-text">consectetur adipisicing elit</span>. Rem voluptatum perspiciatis velit similique, earum iste doloremque modi impedit animi repellat nobis molestiae, natus reiciendis eum harum! <em>Obcaecati</em>, minima consectetur quisquam?</p>
-          <blockquote>
+          <blockquote class="highlight">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure quidem et, culpa illo optio consequuntur assumenda cum dolorem sed. Aut vel perspiciatis debitis voluptate autem et, consectetur explicabo, illo adipisci.
           </blockquote>
 

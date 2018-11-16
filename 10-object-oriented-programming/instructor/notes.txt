@@ -1,0 +1,26 @@
+- Advantages of OOP
+
+1. Encapsulation
+  - Group of related ideas together in a unit, give it a name
+  - Can reason about it much easier
+  - Allows to "classify" concepts
+
+2. Information Hiding
+  - State is private by default
+  - The only way to access state is through behaviour
+
+3. Abstraction
+  - The internals of an object is irrelevant
+  - All I need to care about are what it can do,
+    and how to ask it to do these things
+
+- Class vs Instance
+
+  - Class: Blueprint for specific instances (idea)
+  - Instance: Specific occurence of a thing
+
+
+Object    | State                  | Behaviour
+----------+------------------------+------------------------
+Instance  | Instance Variables (@) | Instance Methods (def)
+?????     | ?????                  | ?????

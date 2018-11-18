@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Modelling</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="slides.js"></script>
+    <style type="text/css">
+
+      @import url(slides.css);
+
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+## *Today's Lesson*
+
+# Debugging
+
+The process of removing errors.
+
+<br>
+
+> Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code.
+---
+
+
+# Agenda
+
+- Intro
+- Types of Bugs
+- Avoiding Bugs
+- Debugging Techniques
+- Gems
+- Printing to the Screen
+- Using a Debugger
+- Rescuing
+- Wrap-up and Resources
+---
+
+
+# Intro
+
+'Debugging' is a term popularly attributed to Grace Hopper, after finding a moth in a computer system.
+
+<small>
+  (the term 'bug' already existed, but this time it was literally a bug. Now 'bug' is the term software developers use.)
+</small>
+
+<img src=bug.jpg style='width: 70%'>
+---
+
+
+# Debugging and Software Development
+
+Debugging is a part of the software development cycle.
+
+Generally, programming is continual cycle of:
+
+code -> debug -> code -> debug -> ...
+
+--
+
+<br>
+
+Bugs do not mean failure!
+
+--
+
+<br>
+
+You'll probably spend more time debugging than writing your initial code.
+
+--
+
+<br>
+
+It's a skill you can develop and it's worth investing time into it.
+---
+
+
+# Types of Bugs
+
+## Syntax errors
+
+## Runtime errors
+
+## Logical errors
+---
+
+
+# Syntax errors
+
+  - the easiest to fix
+  - error messages are usually clear as to what the problem is and how to fix it
+  - often our code won't even begin executing due to these errors
+---
+
+
+# Runtime errors
+
+  - some of our code runs, but then it crashes when it runs into this error
+  - a little more difficult to find and fix
+---
+
+
+# Logical errors
+
+  - the hardest to fix
+  - often we have to do some introspection into our code to understand what's going on
+  - sometimes you may not even notice these errors until well after you've written the code (and are less familiar with the code)
+---
+
+
+# Common Ruby Errors
+
+- undefined local variable or method
+- undefined method for nilclass
+- undefined method for something
+- unexpected end of input, expecting keyword_end
+- unexpected keyword end
+- no implicit conversion
+- wrong number of arguments
+---
+
+layout: true
+
+# Avoiding Bugs
+---
+
+
+What are some techniques we can use to avoid bugs from happening?
+---
+
+
+Read and understand the code you write.
+---
+
+
+Write short bits of code at a time. Then run and test it to ensure the code works as expected.
+---
+
+
+Try bits of code in IRB first.
+---
+
+
+Close code blocks as soon as you open them.
+
+Examples:
+
+- when you write `if`, immediately write `end`
+- when you write `do`, immediately write `end`
+- when you write `def`, immediately write `end`
+- when you write `{`, immediately write `}`
+- when you write `'` or `"`, immediately write `'` or `"`
+
+Often your editor will do this automatically for you.
+---
+
+
+Pair programming.
+
+- one person *navigates*: directs the driver where to go and thinks about the larger problem
+- one person *drives*: types on the keyboard and thinks more specifically about the exact code being written
+
+--
+
+- the driver should let the navigator control the overall process or they risk the navigator disengaging from the process
+- swap out the driver and navigator at regular intervals
+---
+
+
+Organize your code: adhere to the single responsibility principal.
+
+- each class is responsible for one area
+
+- each method does only one thing
+---
+
+
+Example of a method not adhering to the Single Responsibility Principal:
+
+```ruby
+def math(function)
+  if function == 'add'
+    puts 'adding one to count'
+    @count += 1
+  elsif function == 'subtract'
+    puts 'subtracting one from count'
+    @count -= 1
+  end
+end
+
+puts 'Setting count to 0'
+@count = 0
+
+math('add')
+math('add')
+math('subtract')
+
+puts "Final Count:"
+puts @count
+```
+---
+
+
+```ruby
+def add_one
+  puts 'adding one to count'
+  @count += 1
+end
+
+def subtract_one
+  puts 'subtracting one from count'
+  @count -= 1
+end
+
+puts 'Setting count to 0'
+@count = 0
+
+add_one
+add_one
+subtract_one
+
+puts "Final Count:"
+puts @count
+```
+---
+
+
+Keep your code DRY (do not repeat yourself).
+
+*Why does this help?*
+---
+
+
+Properly indent your code.
+
+*Why does this help?*
+---
+
+
+Use meaningful names (for variables, methods and classes)
+
+*Why does this help?*
+---
+
+
+## Be consistent.
+
+- When calling a method with an argument, use the same variable name in both the caller and the receiver.
+---
+
+
+### Not consistent:
+
+```ruby
+def add(amount)
+  puts "adding #{amount} to count"
+  @count += amount
+end
+
+def subtract(number)
+  puts "subtracting #{number} from count"
+  @count -= number
+end
+
+puts 'Setting count to 0'
+@count = 0
+
+num = 5
+
+add(3)
+add(num)
+subtract(2)
+
+puts "Final Count:"
+puts @count
+```
+---
+
+
+### Consistent:
+
+```ruby
+def add(amount)
+  puts "adding #{amount} to count"
+  @count += amount
+end
+
+def subtract(amount)
+  puts "subtracting #{amount} from count"
+  @count -= amount
+end
+
+puts 'Setting count to 0'
+@count = 0
+
+amount = 5
+
+add(3)
+add(amount)
+subtract(2)
+
+puts "Final Count:"
+puts @count
+```
+---
+
+
+## Other ways to be consistent
+
+### Use full names for variables
+
+### Bad:
+
+```ruby
+anims = ['dog', 'cat', 'bird']
+```
+
+### Good:
+
+```ruby
+animals = ['dog', 'cat', 'bird']
+```
+---
+
+
+## Other ways to be consistent
+
+### Properly pluralize variables that represent a collection<br>(e.g. `Array` or `Hash`)
+
+### Bad:
+
+```ruby
+animal = ['dog', 'cat', 'bird']
+```
+
+### Good:
+
+```ruby
+animals = ['dog', 'cat', 'bird']
+```
+---
+
+
+## Other ways to be consistent
+
+### Name your classes consistently
+
+### Bad:
+
+```ruby
+class Dog
+  SOUND = 'woof'
+end
+
+class Cat
+  SOUND = 'meow'
+end
+
+class Animal
+  SOUND = 'chirp'
+end
+```
+---
+
+
+## Other ways to be consistent
+
+### Name your classes consistently
+
+### Good:
+
+```ruby
+class Dog
+  SOUND = 'woof'
+end
+
+class Cat
+  SOUND = 'meow'
+end
+
+class Bird
+  SOUND = 'chirp'
+end
+```
+---
+
+
+## Use best practices.
+
+e.g. avoid global variables
+
+*Why are global variables bad?*
+---
+
+
+## Write automated tests for your code
+
+*How do tests help?*
+---
+
+
+layout: false
+
+# Debugging Techniques
+
+*What are some debugging techniques?*
+---
+
+
+# Read the error message
+
+- read it slowly and try to comprehend it completely
+- looking for the line number where the error is located
+- follow the stack trace
+
+*How does a stack trace work?*
+---
+
+
+# Simplify your code
+
+- break long methods into shorter methods that are easier to reason about
+---
+
+
+# Simplify your code
+
+*For complex bugs:*
+
+Try isolating what you're working on into a separate program and get that working first before integrating it into your larger project.
+
+--
+
+### For example:
+
+If you're having trouble using `each` on a hash:
+
+- try writing a little program with just a single hash using `each`
+- get that working
+- ensure you understand how it works
+- carry that code over to your larger, real program
+---
+
+
+# Simplify your code
+
+*For complex bugs:*
+
+
+### Rails App Twilio Example:
+
+Twilio is a service that let's you send text messages to people.
+
+Let's say you're trying to integrate this service into your app.
+
+- first, write a little Ruby program in a single file that sends a text message using Twilio
+- when that's working, move the code into your main app's codebase
+---
+
+
+# Searching the web:
+
+## Google
+
+When googling, use your error message, but remove line numbers and anything specific to your program.
+
+For example, if you had this error:
+
+```
+Traceback (most recent call last):
+counter.rb:28:in `<main>': undefined method `subtact_one' for #<Counter:0x00007fe2db036748 @count=2> (NoMethodError)
+Did you mean?  subtract_one
+```
+
+Then you'd google:
+
+```
+undefined method for NoMethodError
+```
+
+*What was removed before googling?*
+---
+
+
+# Searching the web:
+
+
+## Stackoverflow:
+
+generally it's good to skip the question and go straight to the answers
+
+--
+
+look at the votes for the first two answers
+
+--
+
+focus on the answer that the most votes
+
+- Usually the first answer is useful, but occasionally the second answer will be much better than the first
+
+--
+
+*Example:*
+
+https://stackoverflow.com/questions/44715/why-do-ruby-setters-need-self-qualification-within-the-class
+---
+
+
+# Rubber duck debugging
+
+- Explain the problem to someone else -- this process often results in you solving your own problem
+
+or
+
+- You can explain it to an imaginary (or real) rubber duck by your computer
+---
+
+
+# Ask for help
+
+Don't spend longer than ten minutes on a problem.
+
+Ask an instructor or another student for help.
+
+The same advice applies for when you get a job: your employer will want you to be productive. They won't want you to spin your wheels for too long.
+---
+
+
+# Read the docs
+
+*Tip:* you can access Ruby documentation from your command line using `ri`:
+
+```shell
+❯ ri Array
+❯ ri Array.empty?
+```
+---
+
+
+# Read the docs
+
+### Understand how the documentation is structured:
+
+- what methods are available on what class
+
+- how method signatures work
+
+- the return value of methods
+
+try:
+
+```shell
+❯ ri String
+❯ ri String.delete_suffix
+```
+
+- What methods does String support?
+- What's the method signature for String.delete_suffix?
+- What's the return value for String.delete_suffix?
+---
+
+layout: true
+
+# Gems
+---
+
+
+What are gems?
+
+--
+
+Finding gems and info about them:
+
+https://rubygems.org/
+---
+
+
+Install a gem:
+
+```shell
+❯ gem install interesting_methods
+```
+
+--
+
+Try it out:
+
+```ruby
+require 'interesting_methods'
+
+animals = ['dog', 'cat', 'bird']
+
+puts animals.im
+```
+---
+
+
+See the code of a gem on the web:
+
+https://github.com/seanlerner/interesting_methods
+
+--
+
+<hr>
+
+Open gem code in your editor:
+
+```shell
+❯ gem open interesting_methods
+```
+
+--
+
+<hr>
+
+Return modified gem code to its original state:
+
+```shell
+❯ gem pristine interesting_methods
+```
+---
+
+layout: false
+
+# Print things to the screen
+
+## Comes with Ruby core/standard library:
+
+- `puts`
+
+--
+
+- `p` (like puts, but calls `inspect` on the object)
+
+--
+
+- `pp` (pretty print)
+
+--
+
+## Gems:
+
+- `ap` (awesome print)
+
+  - `raw: true`
+
+--
+
+- `tp` (table print)
+---
+
+
+# Using a Debugger
+
+Use a debugger to set breakpoints and inspect your code.
+
+## pry
+
+```ruby
+require 'pry'
+
+# ...
+
+binding.pry
+```
+
+--
+
+demo pry with `working-example.rb`
+
+--
+
+try the `book-store-pry-exercise.rb` in the examples folder
+---
+
+
+# Most useful pry commands
+
+
+- whereami
+- ls
+- backtrace
+- show-method
+- show-doc
+- exit
+- exit!
+- help
+---
+
+
+# Using a Debugger
+
+pry-byebug
+
+- next
+- continue
+---
+
+
+# Using a Debugger
+
+binding.irb
+
+- a simple alternative that comes with Ruby
+---
+
+
+# Rescuing
+
+```ruby
+require 'pry'
+
+def my_method
+  greeting = 'hello'
+  person   = 'matz'
+
+  1 / 0 # something bad!
+
+rescue
+  binding.pry
+end
+
+
+my_method
+```
+---
+
+
+# Wrap-up and Resources
+
+What we covered:
+
+- Intro
+- Types of Bugs
+- Avoiding Bugs
+- Debugging Techniques
+- Gems
+- Printing to the Screen
+- Using a Debugger
+- Rescuing
+---
+
+
+# Wrap-up and Resources
+
+Resources:
+
+- https://github.com/pry/pry
+- https://github.com/awesome-print/awesome_print
+- http://tableprintgem.com
+    </textarea>
+
+  </body>
+</html>

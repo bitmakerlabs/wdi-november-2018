@@ -3,4 +3,4 @@
    Object      |      State             | Behaviour
 ---------------+------------------------+-------------------------
 Instance       | Instance Variables (@) | Instance Methods (def)
-??????         | ?????                  | ??????
+Class          | Class Variable (@@)    | Class Methods (def self.anything)

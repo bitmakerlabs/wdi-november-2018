@@ -1,0 +1,6 @@
+
+
+   Object      |      State             | Behaviour
+---------------+------------------------+-------------------------
+Instance       | Instance Variables (@) | Instance Methods (def)
+??????         | ?????                  | ??????

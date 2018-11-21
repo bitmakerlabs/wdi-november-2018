@@ -1,0 +1,28 @@
+MUST HAVE
+As a user, I should be able to see a list of contacts, so that ...
+As a user, I should be able to find a particular contact, so that ...
+As a user, I should be able to keep track of a contact's email address
+As a user, I should be able to look at the details of a contact
+
+SHOULD HAVE
+As a user, I should be able to add a contact
+As a user, I should be able to edit a contact
+As a user, I should be able to delete a contact
+
+COULD HAVE
+As a user, I should be able to sort contacts by name
+As a user, I should be able to keep track of a contact's birthdate
+As a user, I should be able to email a contact
+
+WONT HAVE
+As a user, I should be able to search for contacts
+As a user, I should be able to nuke my contact list
+As a user, I should be able to send money to a contact
+As a user, I should be able to group contacts
+As a user, I should be able to add a photo to a contact
+As a user, I should be able to import a contact list
+As a user, I should be able to export a contact list
+As a user, I should be able to block a contact
+As a user, I should be able to call a contact
+As a user, I should be able to text a contact
+As a user, I should be able to share a contact

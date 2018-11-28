@@ -1,0 +1,16 @@
+
+                Request                                |   Response
+         ----------------------------------------------+-------------------------------------
+                                 | Header  |   Body    |  Header | Body      |   Status Code
+         ------------------------------------------------------------------------------------
+(R)ead        GET + URL          |    Y    |     N     |    Y    |    Y      |       Y
+(C)reate      POST + URL         |    Y    |     Y     |    Y    | Sometimes |       Y
+(U)pdate      PATCH (PUT) + URL  |    Y    |     Y     |    Y    | Sometimes |       Y
+(D)elete      DELETE + URL       |    Y    |     N     |    Y    | Sometimes |       Y
+
+
+Steps of a Redirect
+1) Original request is made
+2) Server says "Go over there instead" 307
+3) Web browser receives the Response
+4) Makes a NEW GET request to "there"

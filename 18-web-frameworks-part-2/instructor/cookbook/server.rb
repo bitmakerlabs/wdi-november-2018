@@ -45,14 +45,17 @@ end
 # end
 
 get '/recipes/:id' do
-  id = params[:id]
 
-  if id == '1'
-    erb :recipe_1
-  elsif id == '2'
-    erb :recipe_2
-  elsif id == '3'
-    erb :recipe_3
-  end
-  
+  # HACK!!!!
+  @recipes = {
+    1 => 'Avocado Sushi',
+    2 => 'BBQ Ribs',
+    3 => 'Gluten-Free Cookies'
+  }
+
+  id = params[:id]
+  @title = @recipes[id.to_i]
+
+  erb :recipe
+
 end

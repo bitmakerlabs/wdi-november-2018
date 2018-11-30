@@ -1,12 +1,20 @@
 <h2>Film Library</h2>
 <ul>
   <% Film.all.each do |film| %>
-    <li><%= film.title %></li>
+    <li>
+      <span><%= film.title %></span>
+      <form action="/films" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+      </form>
+    </li>
   <% end %>
 </ul>
 
 <h2>New Film</h2>
 <form class="new-film" action="/films" method="post">
+  <!-- workaround for sending put, patch, and delete requests -->
+  <!-- <input type="hidden" name="_method" value="delete"> -->
   <div>
     <label for="film-title">Title</label>
     <input id="film-title" type="text" name="title" placeholder="e.g. Moonlight">
@@ -95,3 +103,4 @@
   </div>
 
 </form>
+

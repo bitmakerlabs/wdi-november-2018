@@ -7,9 +7,9 @@ ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'films.sql
 class Film < ActiveRecord::Base
   field :title, as: :string
   field :description, as: :text
-  field :country, as: :string
   field :rating, as: :integer
   field :available, as: :boolean
+  field :country, as: :string
 
 end
 

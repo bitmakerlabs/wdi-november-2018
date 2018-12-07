@@ -1,0 +1,40 @@
+
+<h1>Create a new sleep session</h1>
+
+<form class="" action="/sleep_sessions" method="post">
+
+  Quantity: <input type="number" name="quantity" value=""><br />
+  Quality: <input type="number" name="quality" value=""><br />
+  Description: <input type="text" name="description" value=""><br />
+
+  <input type="submit" name="" value="Create">
+
+</form>
+
+
+<hr>
+
+
+<%= form_tag('/sleep_sessions') do %>
+
+  Quantity: <%= number_field_tag 'quantity' %><br />
+  Quality: <%= number_field_tag 'quality' %><br />
+  Description: <%= text_field_tag 'description' %><br />
+
+  <%= submit_tag 'Create' %>
+
+<% end %>
+
+
+<hr>
+
+
+<%= form_for(@sleep_session) do |helper| %>
+
+  Quantity: <%= helper.number_field :quantity %><br />
+  Quality: <%= helper.number_field :quality %><br />
+  Description: <%= helper.text_field :description %><br />
+
+  <%= helper.submit %>
+
+<% end %>

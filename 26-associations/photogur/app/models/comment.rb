@@ -4,4 +4,6 @@ class Comment < ApplicationRecord
 
   # now we can do this:
   # Comment.first.picture
+
+  has_many :tags, through: :picture
 end

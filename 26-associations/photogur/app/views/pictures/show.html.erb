@@ -3,6 +3,16 @@
   <p> <%= @picture.title %> </p>
   <p> <%= @picture.description %> </p>
   <%= image_tag @picture.url %>
+
+  <h2>Tags</h2>
+  <ul>
+    <% @tags.each do |tag| %>
+      <li>
+        <p><%= tag.name %></p>
+      </li>
+    <% end %>
+  </ul>
+
   <h2>Comments</h2>
   <ul>
     <% @comments.each do |comment| %>

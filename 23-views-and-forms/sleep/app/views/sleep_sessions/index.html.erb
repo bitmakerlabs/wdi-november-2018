@@ -1,0 +1,8 @@
+
+<h1>All Sleep Sessions</h1>
+
+<% @sleep_sessions.each do |session| %>
+  <p>
+    This sleep was <%= session.quantity %> hours long. I rated it <%= session.quality %>/10. <%= session.description %>
+  </p>
+<% end %>

@@ -6,6 +6,7 @@
       <p> <%= link_to 'View', picture_path(picture) %> <%= link_to 'Edit', edit_picture_path(picture) %> <%= link_to 'Delete', picture_path(picture), method: :delete, data: {confirm: "Are you sure?" } %> </p>
       <p class="picture-title"> <%= picture.title %> </p>
       <p class="description"> <%= picture.description %> </p>
+      <p>Comments: <%= picture.comments.count %> </p>
       <div class="image-frame"><%= link_to image_tag(picture.url), picture_path(picture) %></div>
     </section>
   <% end %>

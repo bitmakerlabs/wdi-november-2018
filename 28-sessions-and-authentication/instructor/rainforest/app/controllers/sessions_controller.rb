@@ -23,6 +23,10 @@ class SessionsController < ApplicationController
 
   def destroy
     # Cut the wristband
+    session[:user_id] = nil
+
+    # flash: 'Successful logout'
+    redirect_to root_url
   end
 end
 

@@ -1,4 +1,6 @@
 class ClubsController < ApplicationController
+  before_action :require_login, except: [:index]
+  before_action :require_ownership, only: [:edit, :update, :destroy]
 
   def index
     @clubs = Club.all
@@ -6,6 +8,7 @@ class ClubsController < ApplicationController
 
   def show
     @club = Club.find(params[:id])
+    render :show
   end
 
   def new
@@ -46,6 +49,22 @@ class ClubsController < ApplicationController
     @club = Club.find(params[:id])
     @club.destroy
     redirect_to root_path
+  end
+
+  def require_login
+    unless session[:user_id]
+      flash[:alert] = "You must be logged in"
+      redirect_to new_session_path
+    end
+  end
+
+  def require_ownership
+    @club = Club.find(params[:id])
+    # unless session[:user_id] == @club.user_id
+    unless current_user == @club.user
+      flash[:alert] = "You are not the owner of this club"
+      redirect_to root_path
+    end
   end
 
 end

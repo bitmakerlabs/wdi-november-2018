@@ -6,15 +6,14 @@ class MonstersController < ApplicationController
       format.html
       format.text
       format.json do
-        render json: @monsters.map { |monster|
-          { full_name: monster.name,
-            location: monster.home,
-            creepiness: monster.creepiness
+        render json: @monsters.map { |monster_obj|
+          {full_name: monster_obj.name,
+           location: monster_obj.home,
+           creepiness_factor: monster_obj.creepiness
           }
         }
       end
     end
-
   end
 end
 

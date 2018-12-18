@@ -1,0 +1,14 @@
+<h1>Super Exclusive Clubs</h1>
+
+<% if @clubs.count > 0 %>
+  <% @clubs.each do |club| %>
+    <h3>
+      <%= link_to club.name, club_path(club) %>
+    </h3>
+    <p><%= club.description %></p>
+  <% end %>
+<% else %>
+  <p>No clubs found.</p>
+<% end %>
+
+<%= link_to "Open a New Club", new_club_path %>

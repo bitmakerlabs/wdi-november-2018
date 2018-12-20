@@ -8,7 +8,6 @@ Bounce between explanation (on slides) and coding some examples in skeleton.js .
 After this lesson, you will know:
 
   * Data types and built-in functions
-  * Using JS in HTML
   * Variable assignment
   * Flow control
   * Loops

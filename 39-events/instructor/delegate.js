@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const container = document.querySelector('#container');
 
+  container.addEventListener('click', function(event) {
+    console.log(event.target);
+    
+    if(event.target.classList.contains('circle')) {
+      event.target.remove();
+    }
+  });
+
   const boxMaker = document.querySelector('#box-maker');
 
   boxMaker.addEventListener('click', function() {
@@ -23,8 +31,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
       circle.innerHTML = count++;
 
+      // circle.addEventListener('click', function(event) {
+      //   event.target.remove();
+      //   console.log("Circle was clicked and removed");
+      // });
+
       container.append(circle);
 
       console.log('link was clicked');
   });
+
+  // const circles = document.querySelectorAll('.circle');
+  //
+  // circles.forEach(function(circle) {
+  //   circle.addEventListener('click', function(event) {
+  //     event.target.remove();
+  //   });
+  // });
 });

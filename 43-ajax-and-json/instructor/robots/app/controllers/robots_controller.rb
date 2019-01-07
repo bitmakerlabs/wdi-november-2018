@@ -1,14 +1,20 @@
 class RobotsController < ApplicationController
 
-  before_action :load_robot, only: %i(show)
+  # before_action :load_robot, only: %i(show)
 
   def index
     @robots = Robot.all
   end
 
   def show
+    @robot = Robot.find(params[:id])
     # We don't need to load the robot here, it's done in the load_robot method
     # @robot = Robot.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @robot }
+    end
   end
 
   private

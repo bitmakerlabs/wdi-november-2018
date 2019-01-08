@@ -1,13 +1,13 @@
 const {
-  addCar: addCar,
-  dropOffPassengers: dropOffPassengers,
-  pickUpPassenger: pickUpPassenger,
-  fillUpGas: fillUpGas,
-  getNewCar: getNewCar,
-  getGasDisplay: getGasDisplay,
-  getDestination: getDestination,
-  act: act,
-  drive: drive,
+  addCar,
+  dropOffPassengers,
+  pickUpPassenger,
+  fillUpGas,
+  getNewCar,
+  getGasDisplay,
+  getDestination,
+  act,
+  drive,
 } = require('./autopilot');
 
 test('can add a car', () => {

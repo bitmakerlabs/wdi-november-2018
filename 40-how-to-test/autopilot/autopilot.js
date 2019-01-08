@@ -1,18 +1,18 @@
-function get_new_car() {
+function getNewCar() {
   return {city: 'Toronto', passengers: 0, gas: 100};
 }
 
 function drive(car, distance) {
   if(car.gas < distance) {
-    return fill_up_gas(car);
+    return fillUpGas(car);
   }
-  
-  car.city = get_destination(car);
+
+  car.city = getDestination(car);
   car.gas -= distance;
-  return `Drove to ${car.city}. Remaining gas: ${get_gas_display(car.gas)}.`;
+  return `Drove to ${car.city}. Remaining gas: ${getGasDisplay(car.gas)}.`;
 }
 
-function get_destination(car) {
+function getDestination(car) {
   if(car.city == 'Toronto') {
     return 'Mississauga';
   } else if (car.city == 'Mississauga') {
@@ -22,51 +22,51 @@ function get_destination(car) {
   }
 }
 
-function drop_off_passengers(car) {
-  const previous_passengers = car.passengers;
+function dropOffPassengers(car) {
+  const previousPassengers = car.passengers;
   car.passengers = 0;
-  return `Dropped off ${previous_passengers} passengers`;
+  return `Dropped off ${previousPassengers} passengers`;
 }
 
-function add_car(cars, new_car) {
-  cars.push(new_car);
+function addCar(cars, newCar) {
+  cars.push(newCar);
   return `Adding new car to fleet.  Fleet size is now ${cars.length}`;
 }
 
-function get_gas_display(gas_amount) {
-  return `${gas_amount}%`;
+function getGasDisplay(gasAmount) {
+  return `${gasAmount}%`;
 }
 
-function fill_up_gas(car) {
-  const old_gas = car.gas;
+function fillUpGas(car) {
+  const oldGas = car.gas;
   car.gas = 100;
-  return `Filled up to ${get_gas_display(car.gas)} on gas from ${get_gas_display(old_gas)}`;
+  return `Filled up to ${getGasDisplay(car.gas)} on gas from ${getGasDisplay(oldGas)}`;
 }
-function pick_up_passenger(car){
+function pickUpPassenger(car){
   car.passengers++;
   car.gas -= 10;
   return `Picked up passenger. Car now has ${car.passengers} passengers.`;
 }
 
 function act(car) {
-  const distance_between_cities = 50;
+  const distanceBetweenCities = 50;
 
   if (car.gas < 20) {
-    return fill_up_gas(car);
+    return fillUpGas(car);
   } else if (car.passengers < 3 ) {
-    return pick_up_passenger(car);
+    return pickUpPassenger(car);
   } else {
-    if (car.gas < distance_between_cities) {
-      return fill_up_gas(car);
+    if (car.gas < distanceBetweenCities) {
+      return fillUpGas(car);
     }
-    const drove_to = drive(car, distance_between_cities);
-    const passengers_dropped = drop_off_passengers(car);
-    return `${drove_to} ${passengers_dropped}`;
+    const droveTo = drive(car, distanceBetweenCities);
+    const passengersDropped = dropOffPassengers(car);
+    return `${droveTo} ${passengersDropped}`;
   }
-  return new_car;
+  return newCar;
 }
 
-function command_fleet(cars) {
+function commandFleet(cars) {
   for(let i = 0; i < cars.length; i++) {
     const car = cars[i];
     const action = act(car);
@@ -75,25 +75,25 @@ function command_fleet(cars) {
   console.log("----");
 }
 
-function add_one_car_per_day(cars, num_days){
-  for(let i = 0; i < num_days; i++) {
-    let new_car = get_new_car();
-    console.log(add_car(cars, new_car));
-    command_fleet(cars);
+function addOneCarPerDay(cars, numDays){
+  for(let i = 0; i < numDays; i++) {
+    let newCar = getNewCar();
+    console.log(addCar(cars, newCar));
+    commandFleet(cars);
   }
 }
 
 //let cars = []
-//add_one_car_per_day(cars, 10);
+//addOneCarPerDay(cars, 10);
 
 module.exports = {
-  add_car: add_car,
-  drop_off_passengers: drop_off_passengers,
-  pick_up_passenger: pick_up_passenger,
-  fill_up_gas: fill_up_gas,
-  get_new_car: get_new_car,
-  get_gas_display: get_gas_display,
-  get_destination: get_destination,
+  addCar: addCar,
+  dropOffPassengers: dropOffPassengers,
+  pickUpPassenger: pickUpPassenger,
+  fillUpGas: fillUpGas,
+  getNewCar: getNewCar,
+  getGasDisplay: getGasDisplay,
+  getDestination: getDestination,
   act: act,
   drive: drive,
 }

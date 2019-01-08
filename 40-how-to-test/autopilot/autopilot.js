@@ -87,13 +87,13 @@ function addOneCarPerDay(cars, numDays){
 //addOneCarPerDay(cars, 10);
 
 module.exports = {
-  addCar: addCar,
-  dropOffPassengers: dropOffPassengers,
-  pickUpPassenger: pickUpPassenger,
-  fillUpGas: fillUpGas,
-  getNewCar: getNewCar,
-  getGasDisplay: getGasDisplay,
-  getDestination: getDestination,
-  act: act,
-  drive: drive,
+  addCar,
+  dropOffPassengers,
+  pickUpPassenger,
+  fillUpGas,
+  getNewCar,
+  getGasDisplay,
+  getDestination,
+  act,
+  drive,
 }

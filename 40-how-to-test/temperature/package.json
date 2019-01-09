@@ -1,8 +1,8 @@
 {
-  "name": "autopilot",
+  "name": "temperature",
   "version": "1.0.0",
-  "description": "Today we'll talk about how to think about writing automated tests.",
-  "main": "autopilot.js",
+  "description": "",
+  "main": "temperature.js",
   "scripts": {
     "test": "jest"
   },

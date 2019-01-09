@@ -1,11 +1,8 @@
 //broken
 function filterInactiveAccounts(accounts){
-  for(let i = 0; i < accounts.length; i++){
-    if(accounts[i].active == false){
-      accounts.splice(i, 1);
-    }
-  }
-  return accounts;
+  return accounts.filter((account) => {
+    return account.active;
+  })
 }
 
 module.exports = {filterInactiveAccounts};

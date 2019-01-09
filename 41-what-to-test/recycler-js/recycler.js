@@ -43,9 +43,6 @@ function compost(items) {
   let compostable = items.filter(item => isCompostable(item));
   let nonCompostable = items.filter(item => !isCompostable(item));
 
-  console.log(compostable);
-  console.log(nonCompostable);
-
   if (compostable.length > 0 && nonCompostable === 0) {
     material.compost += compostable.length;
     return true;
@@ -58,11 +55,11 @@ function recycle(items) {
   let recyclable = items.filter(item => isRecyclable(item));
   let nonRecyclable = items.filter(item => !isRecyclable(item));
 
-  if (recyclable.length > 0 && nonRecyclable === 0) {
-    material.plastic += recyclable.filter(item => plastic.includes(item));
-    material.metal += recyclable.filter(item => metal.includes(item));
-    material.glass += recyclable.filter(item => glass.includes(item));
-    material.paper += recyclable.filter(item => paper.includes(item));
+  if (recyclable.length > 0 && nonRecyclable.length === 0) {
+    material.plastic += recyclable.filter(item => plastic.includes(item)).length;
+    material.metal += recyclable.filter(item => metal.includes(item)).length;
+    material.glass += recyclable.filter(item => glass.includes(item)).length;
+    material.paper += recyclable.filter(item => paper.includes(item)).length;
 
     return true;
   } else {
@@ -86,6 +83,13 @@ function getMaterial() {
   return material;
 }
 
+function emptyMaterial() {
+  material = {
+    garbage: 0, compost: 0, metal: 0, glass: 0, paper: 0, plastic: 0
+  };
+  return material;
+}
+
 module.exports = {
   getRandomJunk,
   isCompostable,
@@ -95,5 +99,6 @@ module.exports = {
   recycle,
   toss,
   sortJunk,
-  getMaterial
+  getMaterial,
+  emptyMaterial
 }

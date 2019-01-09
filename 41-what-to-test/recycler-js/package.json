@@ -1,0 +1,14 @@
+{
+  "name": "recycler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "recycler.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}

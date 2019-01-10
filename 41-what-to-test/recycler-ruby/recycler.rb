@@ -1,7 +1,7 @@
 class Recycler
   @@food = ['Spoiled Vegetable','Spoiled Fruit','Moldy Bread']
   @@plastic = ['Soda Bottle','Yoghurt Cup','Shampoo Bottle',
-    'Sandwish Bag','Milk Bag']
+    'Sandwich Bag','Milk Bag']
   @@metal = ['Soda Can','Cat Food Tin','Paint Can','Aluminum Tray']
   @@glass = ['Glass Bottle','Jar']
   @@paper = ['Newspaper','Birthday Card','Toilet Paper Roll']

@@ -68,8 +68,12 @@ function recycle(items) {
 }
 
 function toss(items) {
-  material.garbage += items.length;
-  return true;
+  if (items) {
+    material.garbage += items.length;
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function sortJunk(items) {

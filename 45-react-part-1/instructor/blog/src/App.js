@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Comment from './Comment'
+
 class App extends Component {
   render() {
     return (
@@ -11,9 +13,9 @@ class App extends Component {
         <p>{ this.props.post.body }</p>
 
         <h3>Comments</h3>
-        <p>{ this.props.post.comments[0] }</p>
-        <p>{ this.props.post.comments[1] }</p>
-        <p>{ this.props.post.comments[2] }</p>
+        <Comment body={ this.props.post.comments[0] }/>
+        <Comment body={ this.props.post.comments[1] }/>
+        <Comment body={ this.props.post.comments[2] }/>
       </div>
     );
   }

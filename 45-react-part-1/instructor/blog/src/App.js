@@ -7,11 +7,15 @@ import Comment from './Comment'
 class App extends Component {
   render() {
 
-    const allComments= [
-      <Comment body={ this.props.post.comments[0] }/>,
-      <Comment body={ this.props.post.comments[1] }/>,
-      <Comment body={ this.props.post.comments[2] }/>
-    ]
+    // const allComments= [
+    //   <Comment body={ this.props.post.comments[0] }/>,
+    //   <Comment body={ this.props.post.comments[1] }/>,
+    //   <Comment body={ this.props.post.comments[2] }/>
+    // ]
+
+    const allComments = this.props.post.comments.map( (comment, index) =>
+      <Comment body={ comment } key={ index } />
+    )
 
     return (
       <div className="post">

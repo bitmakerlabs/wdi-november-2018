@@ -6,6 +6,13 @@ import Comment from './Comment'
 
 class App extends Component {
   render() {
+
+    const allComments= [
+      <Comment body={ this.props.post.comments[0] }/>,
+      <Comment body={ this.props.post.comments[1] }/>,
+      <Comment body={ this.props.post.comments[2] }/>
+    ]
+
     return (
       <div className="post">
         <h1>{ this.props.post.title }</h1>
@@ -13,9 +20,7 @@ class App extends Component {
         <p>{ this.props.post.body }</p>
 
         <h3>Comments</h3>
-        <Comment body={ this.props.post.comments[0] }/>
-        <Comment body={ this.props.post.comments[1] }/>
-        <Comment body={ this.props.post.comments[2] }/>
+        { allComments }
       </div>
     );
   }

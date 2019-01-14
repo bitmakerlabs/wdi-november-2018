@@ -10,12 +10,18 @@ class App extends Component {
     body: 'Body from state'
   }
 
-  changeBody = () => {
-    let newBody = prompt('What should the new body be?')
+  updateBody = (body) => {
+    this.setState({ body })
+  }
 
-    this.setState({
-      body: newBody  
-    })
+  changeBodyFromButton = () => {
+    let newBody = prompt('What should the new body be?')
+    this.updateBody(newBody)
+  }
+
+  changeBodyFromInput = (event) => {
+    let newBody = event.target.value
+    this.updateBody(newBody)
   }
 
   render() {
@@ -30,7 +36,9 @@ class App extends Component {
         <h2>by: { this.props.post.author }</h2>
         <p>{ this.state.body }</p>
 
-        <button onClick={ this.changeBody }>Edit Body</button>
+        <button onClick={ this.changeBodyFromButton }>Edit Body</button>
+
+        <input type="text" onChange={ this.changeBodyFromInput } />
 
         <h3>Comments</h3>
         { allComments }

@@ -24,6 +24,12 @@ class App extends Component {
     this.updateBody(newBody)
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault()
+    let newBody = event.target.elements["body_input"].value
+    this.updateBody(newBody)
+  }
+
   render() {
 
     const allComments = this.props.post.comments.map( (comment, index) =>
@@ -38,7 +44,10 @@ class App extends Component {
 
         <button onClick={ this.changeBodyFromButton }>Edit Body</button>
 
-        <input type="text" onChange={ this.changeBodyFromInput } />
+        <form onSubmit={ this.handleSubmit }>
+          <input name="body_input" type="text" onChange={ this.changeBodyFromInput } />
+          <input type="submit" value="Submit" />
+        </form>
 
         <h3>Comments</h3>
         { allComments }

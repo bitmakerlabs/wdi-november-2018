@@ -17,7 +17,18 @@ class MoodTracker extends Component {
   }
 
   increaseMood = () => {
-    const newMoodPoints = this.state.moodPoints + 1
+    const newMoodPoints = this.state.moodPoints >= 10 ? 1 : this.state.moodPoints + 1
+
+    // Ternary condition syntax:
+    //
+    // cond ? result1 : result2
+    //
+    // if (cond) {
+    //   result1
+    // }
+    // else {
+    //   result2
+    // }
 
     // NOT: this.state.moodPoints = newMoodPoints
     // MUST use the setState method

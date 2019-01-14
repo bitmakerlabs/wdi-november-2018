@@ -5,13 +5,20 @@ import './App.css';
 import Comment from './Comment'
 
 class App extends Component {
-  render() {
 
-    // const allComments= [
-    //   <Comment body={ this.props.post.comments[0] }/>,
-    //   <Comment body={ this.props.post.comments[1] }/>,
-    //   <Comment body={ this.props.post.comments[2] }/>
-    // ]
+  state = {
+    body: 'Body from state'
+  }
+
+  changeBody = () => {
+    let newBody = prompt('What should the new body be?')
+
+    this.setState({
+      body: newBody  
+    })
+  }
+
+  render() {
 
     const allComments = this.props.post.comments.map( (comment, index) =>
       <Comment body={ comment } key={ index } />
@@ -21,7 +28,9 @@ class App extends Component {
       <div className="post">
         <h1>{ this.props.post.title }</h1>
         <h2>by: { this.props.post.author }</h2>
-        <p>{ this.props.post.body }</p>
+        <p>{ this.state.body }</p>
+
+        <button onClick={ this.changeBody }>Edit Body</button>
 
         <h3>Comments</h3>
         { allComments }

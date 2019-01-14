@@ -7,7 +7,6 @@ import * as serviceWorker from './serviceWorker';
 const post = {
   title: "Dinosaurs are great!!!!!!!",
   author: "Dave",
-  body: "Blah blah3",
   comments: ["First!", "Second!", "Hire this author now!"]
 }
 

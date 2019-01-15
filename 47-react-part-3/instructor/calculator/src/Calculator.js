@@ -9,32 +9,19 @@ class Calculator extends Component {
   }
 
   calculate = () => {
-    const val1 = this.state.val1
-    const val2 = this.state.val2
-    let result = 0
+    const add = (val1, val2) => val1 + val2
+    const subtract = (val1, val2) => val1 - val2
+    const multiply = (val1, val2) => val1 * val2
+    const divide = (val1, val2) => val1 / val2
 
-    switch(this.state.operation) {
-      case "+": {
-        result = val1 + val2
-        break
-      }
-      case "-": {
-        result = val1 - val2
-        break
-      }
-      case "*": {
-        result = val1 * val2
-        break
-      }
-      case "/": {
-        result = val1 / val2
-        break
-      }
-      default: {
-        console.log("Invalid operation!")
-        break
-      }
-    }
+    const operate = (operation) => ({
+      '+': add,
+      '-': subtract,
+      '*': multiply,
+      '/': divide
+    }[operation])
+
+    const result = operate(this.state.operation)(this.state.val1, this.state.val2)
 
     this.setState({ result })
   }

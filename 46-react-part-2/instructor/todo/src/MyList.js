@@ -5,11 +5,28 @@ import ListItem from './ListItem'
 class MyList extends Component {
 
   state = {
-    list: ["Buy ice cream", "Eat ice cream", "Go to the gym"]
+    list: ["Buy ice cream", "Eat ice cream", "Go to the gym"],
+    newItem: ''
   }
 
   clearList = () => {
     this.setState({ list: [] })
+  }
+
+  addItem = (event) => {
+    event.preventDefault()
+
+    const newList = [...this.state.list]
+    newList.push(this.state.newItem)
+
+    this.setState({
+      list: newList,
+      newItem: ''
+    })
+  }
+
+  handleChange = (event) => {
+    this.setState({ newItem: event.target.value })
   }
 
   render() {
@@ -23,6 +40,15 @@ class MyList extends Component {
         <ul>
           { allListItems }
         </ul>
+
+        <form>
+          <input
+            type="text"
+            placeholder="Type an item here"
+            onChange={ this.handleChange }
+          />
+          <button onClick={ this.addItem }>Add it!</button>
+        </form>
 
         <button onClick={ this.clearList } >Finished everything!</button>
       </div>

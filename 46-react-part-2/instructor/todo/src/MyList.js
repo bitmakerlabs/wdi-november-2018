@@ -1,43 +1,33 @@
-// import React, { Component } from 'react'
-//
-// import ListItem from './ListItem'
-//
-// class MyList extends Component {
-//   render() {
-//     const allListItems = this.props.theList.map( (item, index) =>
-//       <ListItem key={ index } item={ item } />
-//     )
-//
-//     return (
-//       <div>
-//         <h1>Things I should stop procrastinating on:</h1>
-//         <ul>
-//           { allListItems }
-//         </ul>
-//       </div>
-//     )
-//   }
-// }
-//
-// export default MyList
+import React, { Component } from 'react'
 
-import React from 'react'
 import ListItem from './ListItem'
 
-// Functional version of MyList
-const MyList = props => {
-  const allListItems = props.theList.map( (item, index) =>
-    <ListItem key={ index } item={ item } />
-  )
+class MyList extends Component {
 
-  return (
-    <div>
-      <h1>Things I should stop procrastinating on:</h1>
-      <ul>
-        { allListItems }
-      </ul>
-    </div>
-  )
+  state = {
+    list: ["Buy ice cream", "Eat ice cream", "Go to the gym"]
+  }
+
+  clearList = () => {
+    this.setState({ list: [] })
+  }
+
+  render() {
+    const allListItems = this.state.list.map( (item, index) =>
+      <ListItem key={ index } item={ item } />
+    )
+
+    return (
+      <div>
+        <h1>Things I should stop procrastinating on:</h1>
+        <ul>
+          { allListItems }
+        </ul>
+
+        <button onClick={ this.clearList } >Finished everything!</button>
+      </div>
+    )
+  }
 }
 
 export default MyList

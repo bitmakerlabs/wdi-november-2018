@@ -5,10 +5,8 @@ import * as serviceWorker from './serviceWorker';
 
 import MyList from './MyList'
 
-const toDos = ["Buy ice cream", "Eat ice cream", "Go to the gym"]
-
 ReactDOM.render(
-  <MyList theList={ toDos } />,
+  <MyList />,
   document.getElementById('root')
 );
 
